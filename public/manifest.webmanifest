@@ -1,0 +1,24 @@
+{
+  "short_name": "Mundo Cases",
+  "name": "Mundo Cases - Control de Inventario",
+  "description": "Aplicación móvil para la gestión integral de inventario en Mundo Cases",
+  "icons": [
+    {
+      "src": "/logo.jpg",
+      "type": "image/jpeg",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.jpg",
+      "type": "image/jpeg",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#0a0d14",
+  "theme_color": "#0a0d14",
+  "display": "standalone",
+  "orientation": "portrait"
+}

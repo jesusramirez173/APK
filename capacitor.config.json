@@ -1,0 +1,13 @@
+{
+  "appId": "com.mundocases.inventario",
+  "appName": "Mundo Cases Inventario",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https",
+    "cleartext": true
+  },
+  "android": {
+    "backgroundColor": "#07090e",
+    "allowMixedContent": true
+  }
+}
