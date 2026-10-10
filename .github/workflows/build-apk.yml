@@ -31,11 +31,11 @@ jobs:
         run: |
           npm run build
 
-      - name: Configurar Java 17 (JDK)
+      - name: Configurar Java 21 (JDK)
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '21'
 
       - name: Configurar Android SDK manualmente
         run: |
