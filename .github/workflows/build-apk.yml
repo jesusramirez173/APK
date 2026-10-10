@@ -11,7 +11,7 @@ permissions:
 jobs:
   build-apk:
     name: Compilar APK Android
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Descargar Código del Repositorio
@@ -39,6 +39,10 @@ jobs:
 
       - name: Configurar Android SDK
         uses: android-actions/setup-android@v3
+
+      - name: Instalar Plataformas y Build Tools de Android
+        run: |
+          sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
 
       - name: Inicializar y Sincronizar Proyecto Android
         run: |
@@ -75,7 +79,14 @@ jobs:
           path: release-apk/MundoCases-Inventario-v1.0.apk
           retention-days: 30
 
-      - name: Publicar Release Automática con APK Descargable
+      - name: Eliminar Release Anterior si Existe
+        run: |
+          gh release delete v1.0.0 --yes 2>/dev/null || true
+          git push origin :refs/tags/v1.0.0 2>/dev/null || true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publicar Release Automatica con APK Descargable
         uses: softprops/action-gh-release@v2
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
         with:
@@ -90,7 +101,7 @@ jobs:
             - **Control de Inventario Completo:** Agregar, modificar y eliminar artículos.
             - **Campos registrados:** Marca, Modelo, Categoría, Precio de venta, Costo, Unidades Disponibles (Stock), Ubicación y Código SKU.
             - **Ajuste Rápido de Stock:** Botones directos `+` y `-` para ventas y reposiciones instantáneas.
-            - **Logo Oficial de Mundo Cases** integrado en la interfaz y en el icono de la app.
+            - **Interfaz moderna** con logo de Mundo Cases integrado.
             - **Base de Datos Local y Fácil de Manipular (IndexedDB/Dexie):**
               - Funciona 100% offline sin necesidad de servidores costosos.
               - Exportación e importación instantánea a **JSON** para copias de seguridad.
